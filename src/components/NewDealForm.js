@@ -76,7 +76,7 @@ class DealForm extends Component {
             />
           </label>
         </div>
-        <button className="NewDealForm--button" onClick={this.createDeal}>Create Deal</button>
+        <button className="DealsPage--button" onClick={this.createDeal}>Create Deal</button>
       </form>
     );
   }
