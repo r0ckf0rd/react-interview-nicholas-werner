@@ -1,5 +1,5 @@
 import { CREATE_DEAL, DELETE_DEAL, MODIFY_DEAL } from './actions';
-import { filter } from 'lodash';
+import { filter, map } from 'lodash';
 
 var nextDealId = 3;
 
@@ -30,7 +30,12 @@ export default (state = initialState, { type, payload }) => {
       const newDeals = filter(state.deals, deal => deal.id !== payload.id);
       return {...state, deals: newDeals };
     case MODIFY_DEAL:
-      return { ...state, deals: [...state.deals, { ...payload.deal } ] };
+      const { deal: payloadDeal } = payload;
+      const modifiedDeals = map(state.deals, mappedDeal => {
+        return mappedDeal.id === payloadDeal.id ? payloadDeal : mappedDeal}
+      );
+      
+      return { ...state, deals: modifiedDeals };
     default:
       return state;
   }
