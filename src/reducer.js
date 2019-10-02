@@ -29,6 +29,8 @@ export default (state = initialState, { type, payload }) => {
     case DELETE_DEAL:
       const newDeals = filter(state.deals, deal => deal.id !== payload.id);
       return {...state, deals: newDeals };
+    case MODIFY_DEAL:
+      return { ...state, deals: [...state.deals, { ...payload.deal } ] };
     default:
       return state;
   }
