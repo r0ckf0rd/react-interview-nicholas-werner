@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteDeal } from '../actions';
+import { deleteDeal, modifyDeal } from '../actions';
 import DealsTable from '../components/DealsTable';
 
 const mapStateToProps = state => {
@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDeleteDeal: id => dispatch(deleteDeal(id))
+    onDeleteDeal: id => dispatch(deleteDeal(id)),
+    onPublishDeal: deal => dispatch(modifyDeal(deal))
   };
 };
 
