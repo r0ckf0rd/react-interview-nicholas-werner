@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { clone } from 'lodash';
 
 import './DealsTableRow.css';
 
@@ -18,6 +19,13 @@ class DealsTableRow extends Component {
     }).isRequired
   }
 
+  publishDealHandler = () => {
+    const { onPublishDeal, deal } = this.props;
+    const modifiedDeal = clone(deal, true)
+    modifiedDeal.isPublished = !modifiedDeal.isPublished;
+    onPublishDeal(modifiedDeal);
+  }
+
   render() {
     const { deal: { id, institution, dealType, dealSize, isPublished }, onDeleteDeal } = this.props;
     return (
@@ -28,6 +36,7 @@ class DealsTableRow extends Component {
         <td className="DealsTableRow--cell">{isPublished ? 'Yes' : 'No'}</td>
         <td className="DealsTableRow--cell">
           <button className="DealsPage--button" onClick={() => onDeleteDeal(id)}> Delete </button>
+          <button className="DealsPage--button" onClick={this.publishDealHandler}> {isPublished ? 'Unpublish' : 'Publish'} </button> 
         </td>
       </tr>
     )
