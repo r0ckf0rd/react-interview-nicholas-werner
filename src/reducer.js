@@ -1,4 +1,4 @@
-import { CREATE_DEAL, DELETE_DEAL } from './actions';
+import { CREATE_DEAL, DELETE_DEAL, MODIFY_DEAL } from './actions';
 import { filter } from 'lodash';
 
 var nextDealId = 3;
